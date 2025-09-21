@@ -1,8 +1,13 @@
-# Full Stack open CI/CD
+# Full Stack Open CI/CD
 
-This repository is used for the CI/CD module of the Full stack open course
+This repository is used for the CI/CD module of the Full Stack Open course.
 
-Fork the repository to complete course exercises
+While studying [the course](https://fullstackopen.com/en/part11),
+I also applied the teachings on a
+[personal side project](https://github.com/gustafla/zmarkgen),
+which I developed alongside the course exercises.
+This is because I'm not very keen on Javascript and node, and I wanted to
+enjoy the process of using GitHub Actions for something I actually like.
 
 ## Commands
 
