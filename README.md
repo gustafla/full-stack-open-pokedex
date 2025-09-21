@@ -2,6 +2,8 @@
 
 This repository is used for the CI/CD module of the Full Stack Open course.
 
+## :warning: Notice! :warning:
+
 While studying [the course](https://fullstackopen.com/en/part11),
 I also applied the teachings on a
 [personal side project](https://github.com/gustafla/zmarkgen),
