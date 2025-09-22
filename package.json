@@ -1,5 +1,6 @@
 {
   "name": "fullstackopen-cicd",
+  "//": "NOTE!!! This version number is out of sync with repository tags.",
   "version": "1.0.0",
   "description": "Full Stack Open",
   "main": "src/index.js",
