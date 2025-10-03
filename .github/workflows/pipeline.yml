@@ -17,6 +17,8 @@ on:
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-latest
+    outputs:
+      can_tag_release: ${{ steps.deployment.outcome == 'success' }}
     steps:
       - uses: actions/checkout@v5
       - uses: superfly/flyctl-actions/setup-flyctl@master
@@ -48,6 +50,7 @@ jobs:
           retention-days: 30
       - name: Deploy
         if: ${{ env.DEPLOY_CONDITION == 'true' }}
+        id: deployment
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
@@ -57,9 +60,9 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
-    if: ${{ github.env.DEPLOY_CONDITION == 'true' }}
     needs:
       - simple_deployment_pipeline
+    if: ${{ needs.simple_deployment_pipeline.outputs.can_tag_release == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
