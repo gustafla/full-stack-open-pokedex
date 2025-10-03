@@ -51,6 +51,28 @@ jobs:
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - name: Post success on Discord
+        uses: rjstone/discord-webhook-notify@v2
+        if: ${{ success() }}
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: gustafla's bot
+          text: A new version of Pokedex deployed!
+          severity: info
+          color: '#00ff40'
+          title: Pokedex
+          description: "https://full-stack-open-pokedex-small-river-2717.fly.dev/"
+      - name: Post failure on Discord
+        uses: rjstone/discord-webhook-notify@v2
+        if: ${{ failure() }}
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          username: gustafla's bot
+          text: Build failed.
+          severity: error
+          color: '#ff2010'
+          title: Pokedex
+          description: "Commit ${{ github.event.head_commit.url }} failed to build."
   tag_release:
     if: ${{ github.env.DEPLOY_CONDITION == 'true' }}
     needs:
